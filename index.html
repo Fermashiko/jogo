@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>8 Ball Pool Fanpage</title>
+  <style>
+    * { box-sizing: border-box; padding: 0; margin: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+    }
+    header {
+      background-color: #111;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: gold;
+      border-bottom: 3px solid gold;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+    }
+    .section { margin-bottom: 30px; }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: gold;
+      color: black;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .post {
+      background-color: #2d2d2d;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .comment {
+      margin-top: 10px;
+      padding-left: 20px;
+      border-left: 2px solid gold;
+    }
+    .gallery img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .ranking li {
+      margin: 5px 0;
+    }
+    .notification {
+      background-color: gold;
+      color: black;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Novo estilo para galeria e vídeo */
+    .media-section {
+      margin: 30px 0;
+    }
+    .media-section h2 {
+      color: gold;
+      margin-bottom: 15px;
+    }
+    .media-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .media-gallery img, .media-gallery iframe {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .media-gallery iframe {
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <header>🎱 8 Ball Pool Fanpage</header>
+  <div class="container">
+
+    <div class="notification">📢 Torneio neste sábado às 18h! Inscreva-se!</div>
+
+    <div class="section">
+      <h2>🎨 Personalize seu Perfil</h2>
+      <input type="text" id="userName" placeholder="Seu nome">
+      <input type="text" id="userAvatar" placeholder="URL do seu avatar">
+      <button onclick="salvarPerfil()">Salvar Perfil</button>
+      <p id="perfilExibicao"></p>
+    </div>
+
+    <!-- SEÇÃO DE VÍDEO E FOTOS -->
+    <section class="media-section">
+      <h2>🎥 Vídeo Promocional</h2>
+      <div class="media-gallery">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/bf-V_dw3__U?si=xDlWDrgoK_Yzuzt-&start=2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="media-section">
+      <h2>📸 Galeria de Imagens</h2>
+      <div class="media-gallery">
+        <img src="https://play-lh.googleusercontent.com/bPz1guJ6FHF3oIOEy3KqwpaDDKO-hLRaZoyzmM8bLFLN8fWm6L0_EuUnkwv9iqPo3Ag" alt="Jogo 1">
+        <img src="https://s2-techtudo.glbimg.com/yOEOUp_QQZFUov1HoomiuWRYLrw=/0x0:695x481/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/h/p/AMo96vR92BMvFGrjxJzA/2015-03-31-captura-de-tela-2015-03-31-as-101622.png" alt="Taco especial">
+        <img src="https://i.ytimg.com/vi/IZKyjgD-KQM/maxresdefault.jpg" alt="Campeonato 8 Ball">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfVXXWeAFxIMcOD3o_fpxr3-WqXg4TU2p2g&s" alt="Vitória épica">
+      </div>
+    </section>
+
+    <div class="section">
+      <h2>📸 Compartilhe uma Jogada</h2>
+      <textarea id="postText" rows="3" placeholder="Descreva sua jogada..."></textarea>
+      <input type="text" id="postImage" placeholder="URL da imagem da jogada">
+      <button onclick="criarPost()">Postar</button>
+      <div id="posts"></div>
+    </div>
+
+    <div class="section">
+      <h2>🗳️ Enquete: Qual seu taco favorito?</h2>
+      <button onclick="votar('Taco Clássico')">Taco Clássico</button>
+      <button onclick="votar('Taco Flamejante')">Taco Flamejante</button>
+      <button onclick="votar('Taco de Ouro')">Taco de Ouro</button>
+      <ul id="votos"></ul>
+    </div>
+
+    <div class="section">
+      <h2>🎤 Caixa de Perguntas</h2>
+      <input type="text" id="perguntaInput" placeholder="Mande uma pergunta">
+      <button onclick="enviarPergunta()">Enviar</button>
+      <div id="caixaPerguntas"></div>
+    </div>
+
+    <div class="section">
+      <h2>🧠 Quiz: Quanto você sabe sobre 8 Ball Pool?</h2>
+      <p>Pergunta: Quantas bolas coloridas tem no jogo?</p>
+      <button onclick="responderQuiz(7)">7</button>
+      <button onclick="responderQuiz(8)">8</button>
+      <button onclick="responderQuiz(15)">15</button>
+      <p id="respostaQuiz"></p>
+    </div>
+
+    <div class="section">
+      <h2>🏆 Ranking de Jogadores</h2>
+      <ul class="ranking" id="ranking">
+        <li>🎱 JoãoBola8 - 15 curtidas</li>
+        <li>🎱 AnaSnooker - 12 curtidas</li>
+        <li>🎱 Você - <span id="minhasCurtidas">0</span> curtidas</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+    let curtidas = 0;
+    const votos = { "Taco Clássico": 0, "Taco Flamejante": 0, "Taco de Ouro": 0 };
+
+    function salvarPerfil() {
+      const nome = document.getElementById('userName').value;
+      const avatar = document.getElementById('userAvatar').value;
+      document.getElementById('perfilExibicao').innerHTML = `Olá, <strong>${nome}</strong>! <img src="${avatar}" class="avatar">`;
+    }
+
+    function criarPost() {
+      const texto = document.getElementById('postText').value;
+      const imagem = document.getElementById('postImage').value;
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+      postDiv.innerHTML = `
+        <p><img src="https://i.pravatar.cc/30" class="avatar"> <strong>Você:</strong></p>
+        <p>${texto}</p>
+        ${imagem ? `<div class='gallery'><img src="${imagem}" alt="Jogada"></div>` : ''}
+        <button onclick="curtir(this)">👍 Curtir (<span>0</span>)</button>
+        <button onclick="comentar(this)">💬 Comentar</button>
+        <div class="comentarios"></div>
+      `;
+      document.getElementById('posts').prepend(postDiv);
+      // Limpar inputs
+      document.getElementById('postText').value = '';
+      document.getElementById('postImage').value = '';
+    }
+
+    function curtir(btn) {
+      const span = btn.querySelector('span');
+      let n = parseInt(span.textContent);
+      span.textContent = ++n;
+      curtidas++;
+      document.getElementById("minhasCurtidas").textContent = curtidas;
+    }
+
+    function comentar(btn) {
+      const nome = prompt("Seu nome:");
+      const comentario = prompt("Digite seu comentário:");
+      if (comentario) {
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `<img src="https://i.pravatar.cc/30?u=${nome}" class="avatar"> <strong>${nome}:</strong> ${comentario}`;
+        btn.parentElement.querySelector(".comentarios").appendChild(div);
+      }
+    }
+
+    function votar(opcao) {
+      votos[opcao]++;
+      const ul = document.getElementById("votos");
+      ul.innerHTML = Object.entries(votos).map(([nome, qtd]) => `<li>${nome}: ${qtd} votos</li>`).join('');
+    }
+
+    function enviarPergunta() {
+      const pergunta = document.getElementById("perguntaInput").value;
+      if (pergunta) {
+        const div = document.createElement("div");
+        div.textContent = `📩 ${pergunta}`;
+        document.getElementById("caixaPerguntas").appendChild(div);
+        document.getElementById("perguntaInput").value = "";
+      }
+    }
+
+    function responderQuiz(resposta) {
+      const certo = resposta === 15;
+      document.getElementById("respostaQuiz").textContent = certo ? "✅ Correto!" : "❌ Errado. Tente novamente.";
+    }
+  </script>
+</body>
+</html>
