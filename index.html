@@ -1,176 +1,364 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>8 Ball Pool Fanpage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8 Ball Pool Fanpage - Versão Acessível</title>
   <style>
-    * { box-sizing: border-box; padding: 0; margin: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #4B0082, #8A2BE2);
       color: white;
+      min-height: 100vh;
     }
-    header {
-      background-color: #111;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: gold;
-      border-bottom: 3px solid gold;
-    }
+
     .container {
       max-width: 800px;
-      margin: 20px auto;
+      margin: 0 auto;
       padding: 20px;
-      background-color: #1e1e1e;
-      border-radius: 10px;
     }
-    .section { margin-bottom: 30px; }
-    textarea, input[type="text"] {
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      color: #DDA0DD;
+    }
+
+    .banner {
+      background: linear-gradient(45deg, #9370DB, #BA55D3);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(221, 160, 221, 0.3);
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+      color: #DDA0DD;
+    }
+
+    input, textarea, button {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
+      margin: 5px 0;
       border: none;
+      border-radius: 5px;
+      font-size: 16px;
     }
+
     button {
-      background-color: gold;
-      color: black;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 5px;
+      background: linear-gradient(45deg, #9370DB, #BA55D3);
+      color: white;
       cursor: pointer;
       font-weight: bold;
+      transition: transform 0.2s;
     }
-    .post {
-      background-color: #2d2d2d;
-      padding: 15px;
-      margin-top: 15px;
+
+    button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(45deg, #8A2BE2, #9370DB);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
       border-radius: 10px;
+      transition: transform 0.3s;
+      border: 2px solid #DDA0DD;
     }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .post {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #BA55D3;
+    }
+
+    .comment {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px;
+      border-radius: 5px;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
     .avatar {
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      margin-right: 10px;
       vertical-align: middle;
+      margin-right: 5px;
     }
-    .comment {
-      margin-top: 10px;
-      padding-left: 20px;
-      border-left: 2px solid gold;
+
+    .ranking {
+      list-style: none;
     }
-    .gallery img {
-      width: 100%;
-      max-height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
+
     .ranking li {
-      margin: 5px 0;
-    }
-    .notification {
-      background-color: gold;
-      color: black;
+      background: rgba(255, 255, 255, 0.1);
       padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border-left: 4px solid #DDA0DD;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
       border-radius: 10px;
-      font-weight: bold;
-      text-align: center;
+    }
+
+    /* Recursos de Acessibilidade */
+    .accessibility-panel {
+      background: rgba(138, 43, 226, 0.2);
+      border: 2px solid #BA55D3;
+      border-radius: 10px;
+      padding: 15px;
       margin-bottom: 20px;
     }
 
-    /* Novo estilo para galeria e vídeo */
-    .media-section {
-      margin: 30px 0;
+    .video-transcript {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      border-left: 4px solid #DDA0DD;
     }
-    .media-section h2 {
-      color: gold;
-      margin-bottom: 15px;
+
+    .visual-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: blink 1.5s infinite;
     }
-    .media-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
+
+    .indicator-active {
+      background-color: #00FF00;
     }
-    .media-gallery img, .media-gallery iframe {
-      width: 100%;
-      border-radius: 10px;
+
+    .indicator-inactive {
+      background-color: #FF6B6B;
     }
-    .media-gallery iframe {
-      height: 300px;
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.3; }
+    }
+
+    .audio-description {
+      background: rgba(186, 85, 211, 0.2);
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-style: italic;
+      border-left: 3px solid #BA55D3;
+    }
+
+    .notification-banner {
+      background: linear-gradient(45deg, #32CD32, #228B22);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .header h1 {
+        font-size: 2em;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Alto contraste para melhor legibilidade */
+    .high-contrast {
+      background: #000000 !important;
+      color: #FFFFFF !important;
+    }
+
+    .high-contrast .section {
+      background: #1a1a1a !important;
+      border: 2px solid #FFFFFF !important;
+    }
+
+    .high-contrast button {
+      background: #FFFFFF !important;
+      color: #000000 !important;
+      border: 2px solid #000000 !important;
     }
   </style>
 </head>
 <body>
-  <header>🎱 8 Ball Pool Fanpage</header>
   <div class="container">
-
-    <div class="notification">📢 Torneio neste sábado às 18h! Inscreva-se!</div>
-
-    <div class="section">
-      <h2>🎨 Personalize seu Perfil</h2>
-      <input type="text" id="userName" placeholder="Seu nome">
-      <input type="text" id="userAvatar" placeholder="URL do seu avatar">
-      <button onclick="salvarPerfil()">Salvar Perfil</button>
-      <p id="perfilExibicao"></p>
+    <div class="header">
+      <h1>🎱 8 Ball Pool Fanpage</h1>
+      <p style="color: #DDA0DD; font-size: 1.1em;">Versão Acessível para Pessoas com Deficiência Auditiva</p>
     </div>
 
-    <!-- SEÇÃO DE VÍDEO E FOTOS -->
-    <section class="media-section">
-      <h2>🎥 Vídeo Promocional</h2>
-      <div class="media-gallery">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/bf-V_dw3__U?si=xDlWDrgoK_Yzuzt-&start=2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- Painel de Acessibilidade -->
+    <div class="accessibility-panel">
+      <h2>♿ Recursos de Acessibilidade</h2>
+      <p><span class="visual-indicator indicator-active"></span><strong>Indicadores Visuais Ativos:</strong> Sinais visuais substituem alertas sonoros</p>
+      <p><span class="visual-indicator indicator-inactive"></span><strong>Transcrições Disponíveis:</strong> Todo conteúdo de áudio possui descrição textual</p>
+      <button onclick="toggleHighContrast()" style="width: auto; margin: 10px 5px 5px 0;">🔆 Alternar Alto Contraste</button>
+      <button onclick="increaseFontSize()" style="width: auto; margin: 10px 5px 5px 0;">🔍 Aumentar Fonte</button>
+      <button onclick="decreaseFontSize()" style="width: auto; margin: 10px 5px 5px 0;">🔍 Diminuir Fonte</button>
+    </div>
+
+    <div class="banner">
+      🔥 Torneio neste sábado às 18h! Inscreva-se!
+      <div class="audio-description">
+        📝 Descrição: Anúncio de torneio de 8 Ball Pool marcado para sábado às 18 horas. Inscrições abertas.
+      </div>
+    </div>
+
+    <div class="notification-banner" id="notificationBanner">
+      ✅ Ação realizada com sucesso!
+    </div>
+
+    <div class="section">
+      <h2>🎮 Personalize seu Perfil</h2>
+      <input type="text" id="userName" placeholder="Seu nome" aria-label="Digite seu nome de usuário">
+      <input type="text" id="userAvatar" placeholder="URL do seu avatar" aria-label="Digite a URL da sua foto de perfil">
+      <button onclick="salvarPerfil()" aria-label="Salvar informações do perfil">Salvar Perfil</button>
+      <div id="perfilExibicao" style="margin-top: 10px;" role="status" aria-live="polite"></div>
+    </div>
+
+    <section class="section">
+      <h2>🎬 Vídeo Promocional</h2>
+      <iframe src="https://www.youtube.com/embed/IZKyjgD-KQM" frameborder="0" allowfullscreen 
+              title="Vídeo promocional do 8 Ball Pool" aria-label="Vídeo promocional do jogo 8 Ball Pool"></iframe>
+      
+      <div class="video-transcript">
+        <h3>📝 Transcrição do Vídeo:</h3>
+        <p><strong>Narrador:</strong> "Bem-vindos ao mundo do 8 Ball Pool! O jogo de sinuca mais popular do mundo está aqui!"</p>
+        <p><strong>Descrição Visual:</strong> Imagens de mesa de sinuca com bolas coloridas, tacos especiais e jogadores competindo.</p>
+        <p><strong>Narrador:</strong> "Desafie jogadores do mundo inteiro, colete tacos únicos e torne-se o mestre da sinuca!"</p>
+        <p><strong>Efeitos Sonoros:</strong> Som de bolas colidindo, aplausos da plateia, música empolgante de fundo.</p>
+        <p><strong>Call-to-Action:</strong> "Baixe agora e comece sua jornada rumo ao topo!"</p>
       </div>
     </section>
 
-    <section class="media-section">
+    <section class="section">
       <h2>📸 Galeria de Imagens</h2>
-      <div class="media-gallery">
-        <img src="https://play-lh.googleusercontent.com/bPz1guJ6FHF3oIOEy3KqwpaDDKO-hLRaZoyzmM8bLFLN8fWm6L0_EuUnkwv9iqPo3Ag" alt="Jogo 1">
-        <img src="https://s2-techtudo.glbimg.com/yOEOUp_QQZFUov1HoomiuWRYLrw=/0x0:695x481/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/h/p/AMo96vR92BMvFGrjxJzA/2015-03-31-captura-de-tela-2015-03-31-as-101622.png" alt="Taco especial">
-        <img src="https://i.ytimg.com/vi/IZKyjgD-KQM/maxresdefault.jpg" alt="Campeonato 8 Ball">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfVXXWeAFxIMcOD3o_fpxr3-WqXg4TU2p2g&s" alt="Vitória épica">
+      <div class="gallery">
+        <img src="https://lh3.googleusercontent.com/bPz1guJ6FHF3oIOEy3KqwpaDDKO-hLRaZoyzmM8bLFLN8fWm6L0_EuUnkwv9iqPo3Ag" 
+             alt="Mesa de sinuca com bolas numeradas dispostas em triângulo, taco posicionado para a primeira tacada">
+        <img src="https://s2-techtudo.glbimg.com/yOEOUp_QQZFUov1HoomiuWRYLrw=/0x0:695x481/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/h/p/AMo96vR92BMvFGrjxJzA/2015-03-31-captura-de-tela-2015-03-31-as-101622.png" 
+             alt="Taco especial dourado com detalhes ornamentados, símbolo de prestígio no jogo">
+        <img src="https://i.ytimg.com/vi/IZKyjgD-KQM/maxresdefault.jpg" 
+             alt="Campeonato de 8 Ball Pool com jogadores profissionais, mesa iluminada e plateia ao fundo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfVXXWeAFxIMcOD3o_fpxr3-WqXg4TU2p2g&s" 
+             alt="Momento de vitória épica, jogador comemorando após encaçapar a bola 8 preta">
+      </div>
+      <div class="audio-description">
+        🔊 Descrição de Áudio: Galeria contém 4 imagens relacionadas ao 8 Ball Pool: mesa de jogo, equipamentos especiais, competições e momentos de vitória.
       </div>
     </section>
 
     <div class="section">
       <h2>📸 Compartilhe uma Jogada</h2>
-      <textarea id="postText" rows="3" placeholder="Descreva sua jogada..."></textarea>
-      <input type="text" id="postImage" placeholder="URL da imagem da jogada">
-      <button onclick="criarPost()">Postar</button>
-      <div id="posts"></div>
+      <textarea id="postText" rows="3" placeholder="Descreva sua jogada..." 
+                aria-label="Descreva detalhadamente sua jogada para outros jogadores"></textarea>
+      <input type="text" id="postImage" placeholder="URL da imagem da jogada" 
+             aria-label="Cole o link da imagem da sua jogada">
+      <button onclick="criarPost()" aria-label="Publicar sua jogada na comunidade">Postar</button>
+      <div id="posts" role="feed" aria-label="Feed de jogadas compartilhadas"></div>
     </div>
 
     <div class="section">
       <h2>🗳️ Enquete: Qual seu taco favorito?</h2>
-      <button onclick="votar('Taco Clássico')">Taco Clássico</button>
-      <button onclick="votar('Taco Flamejante')">Taco Flamejante</button>
-      <button onclick="votar('Taco de Ouro')">Taco de Ouro</button>
-      <ul id="votos"></ul>
+      <div class="audio-description">
+        🎯 Enquete Interativa: Vote no seu taco favorito. Os resultados são atualizados em tempo real.
+      </div>
+      <button onclick="votar('Taco Clássico')" aria-label="Votar no Taco Clássico">Taco Clássico</button>
+      <button onclick="votar('Taco Flamejante')" aria-label="Votar no Taco Flamejante">Taco Flamejante</button>
+      <button onclick="votar('Taco de Ouro')" aria-label="Votar no Taco de Ouro">Taco de Ouro</button>
+      <ul id="votos" role="status" aria-live="polite" aria-label="Resultados da enquete em tempo real"></ul>
     </div>
 
     <div class="section">
       <h2>🎤 Caixa de Perguntas</h2>
-      <input type="text" id="perguntaInput" placeholder="Mande uma pergunta">
-      <button onclick="enviarPergunta()">Enviar</button>
-      <div id="caixaPerguntas"></div>
+      <div class="audio-description">
+        💬 Interação da Comunidade: Envie suas perguntas sobre 8 Ball Pool. Todas as perguntas são exibidas publicamente.
+      </div>
+      <input type="text" id="perguntaInput" placeholder="Mande uma pergunta" 
+             aria-label="Digite sua pergunta sobre o jogo">
+      <button onclick="enviarPergunta()" aria-label="Enviar pergunta para a comunidade">Enviar</button>
+      <div id="caixaPerguntas" role="log" aria-live="polite" aria-label="Lista de perguntas da comunidade"></div>
     </div>
 
     <div class="section">
       <h2>🧠 Quiz: Quanto você sabe sobre 8 Ball Pool?</h2>
-      <p>Pergunta: Quantas bolas coloridas tem no jogo?</p>
-      <button onclick="responderQuiz(7)">7</button>
-      <button onclick="responderQuiz(8)">8</button>
-      <button onclick="responderQuiz(15)">15</button>
-      <p id="respostaQuiz"></p>
+      <p><strong>Pergunta:</strong> Quantas bolas coloridas tem no jogo?</p>
+      <div class="audio-description">
+        🎲 Quiz Interativo: Teste seus conhecimentos sobre 8 Ball Pool. Escolha a resposta correta entre as opções.
+      </div>
+      <button onclick="responderQuiz(7)" aria-label="Responder 7 bolas coloridas">7</button>
+      <button onclick="responderQuiz(8)" aria-label="Responder 8 bolas coloridas">8</button>
+      <button onclick="responderQuiz(15)" aria-label="Responder 15 bolas coloridas">15</button>
+      <p id="respostaQuiz" role="status" aria-live="assertive" aria-label="Resultado da resposta do quiz"></p>
     </div>
 
     <div class="section">
       <h2>🏆 Ranking de Jogadores</h2>
-      <ul class="ranking" id="ranking">
+      <div class="audio-description">
+        🏅 Classificação: Ranking dos jogadores mais populares baseado no número de curtidas recebidas.
+      </div>
+      <ul class="ranking" id="ranking" role="list" aria-label="Ranking dos jogadores mais populares">
         <li>🎱 JoãoBola8 - 15 curtidas</li>
         <li>🎱 AnaSnooker - 12 curtidas</li>
         <li>🎱 Você - <span id="minhasCurtidas">0</span> curtidas</li>
@@ -181,31 +369,79 @@
 
   <script>
     let curtidas = 0;
+    let fontSize = 16;
+    let highContrastMode = false;
     const votos = { "Taco Clássico": 0, "Taco Flamejante": 0, "Taco de Ouro": 0 };
+
+    // Função para mostrar notificação visual
+    function showNotification(message) {
+      const banner = document.getElementById('notificationBanner');
+      banner.textContent = message;
+      banner.style.display = 'block';
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 3000);
+    }
+
+    // Função para alternar alto contraste
+    function toggleHighContrast() {
+      highContrastMode = !highContrastMode;
+      document.body.classList.toggle('high-contrast', highContrastMode);
+      showNotification(highContrastMode ? 'Alto contraste ativado' : 'Alto contraste desativado');
+    }
+
+    // Função para aumentar fonte
+    function increaseFontSize() {
+      fontSize += 2;
+      document.body.style.fontSize = fontSize + 'px';
+      showNotification('Fonte aumentada para ' + fontSize + 'px');
+    }
+
+    // Função para diminuir fonte
+    function decreaseFontSize() {
+      if (fontSize > 12) {
+        fontSize -= 2;
+        document.body.style.fontSize = fontSize + 'px';
+        showNotification('Fonte diminuída para ' + fontSize + 'px');
+      }
+    }
 
     function salvarPerfil() {
       const nome = document.getElementById('userName').value;
       const avatar = document.getElementById('userAvatar').value;
-      document.getElementById('perfilExibicao').innerHTML = `Olá, <strong>${nome}</strong>! <img src="${avatar}" class="avatar">`;
+      if (nome) {
+        document.getElementById('perfilExibicao').innerHTML = `Olá, <strong>${nome}</strong>! ${avatar ? `<img src="${avatar}" class="avatar" alt="Avatar de ${nome}">` : ''}`;
+        showNotification('Perfil salvo com sucesso!');
+      } else {
+        showNotification('Por favor, digite seu nome.');
+      }
     }
 
     function criarPost() {
       const texto = document.getElementById('postText').value;
       const imagem = document.getElementById('postImage').value;
+      
+      if (!texto) {
+        showNotification('Por favor, descreva sua jogada.');
+        return;
+      }
+
       const postDiv = document.createElement('div');
       postDiv.className = 'post';
       postDiv.innerHTML = `
-        <p><img src="https://i.pravatar.cc/30" class="avatar"> <strong>Você:</strong></p>
+        <p><img src="https://i.pravatar.cc/30" class="avatar" alt="Avatar do usuário"> <strong>Você:</strong></p>
         <p>${texto}</p>
-        ${imagem ? `<div class='gallery'><img src="${imagem}" alt="Jogada"></div>` : ''}
-        <button onclick="curtir(this)">👍 Curtir (<span>0</span>)</button>
-        <button onclick="comentar(this)">💬 Comentar</button>
-        <div class="comentarios"></div>
+        ${imagem ? `<div class='gallery'><img src="${imagem}" alt="Imagem da jogada compartilhada"></div>` : ''}
+        <button onclick="curtir(this)" aria-label="Curtir esta jogada">👍 Curtir (<span>0</span>)</button>
+        <button onclick="comentar(this)" aria-label="Comentar nesta jogada">💬 Comentar</button>
+        <div class="comentarios" role="list" aria-label="Comentários desta jogada"></div>
       `;
       document.getElementById('posts').prepend(postDiv);
+      
       // Limpar inputs
       document.getElementById('postText').value = '';
       document.getElementById('postImage').value = '';
+      showNotification('Jogada compartilhada com sucesso!');
     }
 
     function curtir(btn) {
@@ -214,16 +450,19 @@
       span.textContent = ++n;
       curtidas++;
       document.getElementById("minhasCurtidas").textContent = curtidas;
+      showNotification('Curtida adicionada! Total: ' + n);
     }
 
     function comentar(btn) {
       const nome = prompt("Seu nome:");
       const comentario = prompt("Digite seu comentário:");
-      if (comentario) {
+      if (comentario && nome) {
         const div = document.createElement('div');
         div.className = 'comment';
-        div.innerHTML = `<img src="https://i.pravatar.cc/30?u=${nome}" class="avatar"> <strong>${nome}:</strong> ${comentario}`;
+        div.setAttribute('role', 'listitem');
+        div.innerHTML = `<img src="https://i.pravatar.cc/30?u=${nome}" class="avatar" alt="Avatar de ${nome}"> <strong>${nome}:</strong> ${comentario}`;
         btn.parentElement.querySelector(".comentarios").appendChild(div);
+        showNotification('Comentário adicionado por ' + nome);
       }
     }
 
@@ -231,6 +470,7 @@
       votos[opcao]++;
       const ul = document.getElementById("votos");
       ul.innerHTML = Object.entries(votos).map(([nome, qtd]) => `<li>${nome}: ${qtd} votos</li>`).join('');
+      showNotification('Voto registrado para ' + opcao + '! Total: ' + votos[opcao]);
     }
 
     function enviarPergunta() {
@@ -238,15 +478,32 @@
       if (pergunta) {
         const div = document.createElement("div");
         div.textContent = `📩 ${pergunta}`;
+        div.style.background = 'rgba(186, 85, 211, 0.2)';
+        div.style.padding = '10px';
+        div.style.margin = '5px 0';
+        div.style.borderRadius = '5px';
+        div.style.borderLeft = '3px solid #BA55D3';
         document.getElementById("caixaPerguntas").appendChild(div);
         document.getElementById("perguntaInput").value = "";
+        showNotification('Pergunta enviada com sucesso!');
+      } else {
+        showNotification('Por favor, digite uma pergunta.');
       }
     }
 
     function responderQuiz(resposta) {
       const certo = resposta === 15;
-      document.getElementById("respostaQuiz").textContent = certo ? "✅ Correto!" : "❌ Errado. Tente novamente.";
+      const resultado = certo ? "✅ Correto! São 15 bolas coloridas no total." : "❌ Errado. São 15 bolas coloridas no total (7 lisas + 7 listradas + 1 preta).";
+      document.getElementById("respostaQuiz").textContent = resultado;
+      showNotification(certo ? 'Resposta correta!' : 'Resposta incorreta. Tente novamente!');
     }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      showNotification('Página carregada! Recursos de acessibilidade ativados.');
+    });
   </script>
+
 </body>
 </html>
+
